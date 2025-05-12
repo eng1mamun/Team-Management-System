@@ -1,0 +1,153 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "PayAapprovalEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+
+}
+
+
+<div class="theheading1">
+    <h4><u>Payment Aapproval:</u></h4>
+</div>
+<form action="/TM/PayAapprovalEntry" method="get">
+    <div class="container">
+        <div class="row">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label for="InstituteId">Institute Name: </label>
+                    <select class="form-control" name="InstituteId" id="InstituteId">
+                        <option value="0">Choose Your Institute Name ...</option>
+                        @foreach (var item in db.InstituteInfoes)
+                        {
+                            
+                                <option value="@item.InstituteId">@item.InsName</option>
+                            
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="GrantedMemberId">Granted Member: </label>
+                    <select class="form-control" name="GrantedMemberId" id="GrantedMemberId">
+                        @foreach (var item in db.TraneeInfoes)
+                        {
+                            if (item.PStatusId == 3)
+                            {
+                                <option value="@item.TraneeId">@item.TraneeName</option>
+                            }
+                        }
+
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="BranchId">Branch Name: </label>
+                    <select class="form-control" name="BranchId" id="BranchId">
+                        <option value="0">Choose Branch Name...</option>
+                        @foreach (var item in db.BranchInfoes)
+                        {
+                           
+                                <option value="@item.BranchId">@item.BranchName</option>
+                            
+                        }
+                    </select>
+                </div>
+              
+                <div class="col-md-4">
+                    <label for="YearId">Year: </label>
+                    <select class="form-control" name="YearId" id="YearId">
+                        <option value="0">Choose Year ...</option>
+                        @foreach (var item in db.Yearinfoes)
+                        {
+                           
+                                <option value="@item.YearId">@item.Year</option>
+                            
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="MonthId">Starting Month: </label>
+                    <select class="form-control" name="sMonthId" id="sMonthId">
+                        <option value="0">Choose Month...</option>
+                        @foreach (var item in db.MonthInfoes)
+                        {
+                           
+                                <option value="@item.MonthId">@item.MonthName</option>
+                            
+                        
+                        }
+                    </select>
+
+                </div>
+                <div class="col-md-4">
+                    <label for="MonthId">Ending Month: </label>
+                    <select class="form-control" name="eMonthId" id="eMonthId">
+                        <option value="0">Choose Month...</option>
+                        @foreach (var item in db.MonthInfoes)
+                        {
+                          
+                                <option value="@item.MonthId">@item.MonthName</option>
+                            
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div style="text-align:center">
+        <input type="button" class="btn btn-success" name="Search" id="Search"value="Search" />
+        <table class="table table-bordered table-striped" name="PayAapproval" id="PayAapprovalTable"></table>
+
+    </div>
+</form>
+<br />
+
+@section Scripts{
+    @*<script src="~/Scripts/jquery-1.12.4.js"></script>*@
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#Search').click(function () {
+                $('#PayAapprovalTable').empty();
+                if ($('#InstituteId').val() == 0) {
+                    alert('Institute selection is required');
+                    return false();
+                }
+                if ($('#TraneeId').val() == 0) {
+                    alert('Tranee selection is required');
+                    return false();
+                }
+                if ($('#BranchId').val() == 0) {
+                    alert('Branch selection is required');
+                    return false();
+                }
+                if ($('#YearId').val() == 0) {
+                    alert('Year selection is required');
+                    return false();
+                }
+                if ($('#sMonthId').val() == 0) {
+                    alert('Month selection is required');
+                    return false();
+                }
+                if ($('#eMonthId').val() == 0) {
+                    alert('Month selection is required');
+                    return false();
+                }
+               
+                var row2 = '<tr><th>serial</th><th>InstituteName</th><th>Class</th><th>Year</th><th>Month</th><th>Branch</th><th>TotalStudent</th><th>Payable</th><th>payMethod</th><th>Tranjection</th></tr>';
+                $('#PayAapprovalTable').append(row2);
+                $.get("/TM/GetPayAapprovalAPI", { InId: $('#InstituteId').val(), TId: $('#TraneeId').val(), BId: $('#BranchId').val(), YId: $('#YearId').val(), sMId: $('#sMonthId').val(), eMId: $('#eMonthId').val() }, function (data) {
+                    var sl = 1;
+                    $.each(data, function (index, row) {
+                        //alert(row[index][1]);TraneeTypeName
+                        var row1 = '<tr>' + '<th scope="row">' + sl + '</th><td>' + row.InsName + '</td>' + '<td>' + row.ClassName + '</td>' + '<td>' + row.BranchName + '</td>' + '<td>' + row.Year + '</td>' + '<td>' + row.MonthName + '</td>' + '<td>' + row.TotalStudent + '</td>' + '<td>' + row.TotalCost + '</td>' + '<td>' + row.PayMethodName + '</td>' + '</tr>';
+                        $('#PayAapprovalTable').append(row1);
+                        sl++;
+                        //return false;
+                    });
+                });
+
+
+            });
+        });
+</script>
+}

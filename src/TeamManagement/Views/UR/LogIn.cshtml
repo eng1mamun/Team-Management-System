@@ -1,0 +1,29 @@
+﻿@using TeamManagement.Models;
+@{
+    ViewBag.Title = "LogIn";
+    Company_InformationEntities db = new Company_InformationEntities();
+}
+<div class="theheading1">
+    <h4><u>User Name:</u></h4>
+</div>
+<form action="/UR/LogIn" class="brentry">
+    <div>
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="UName" class="form-label">User Name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="UName" id="UName" placeholder="Entry User Name" autocomplete="off" />
+            </div>
+            <div class="col-auto brname">
+                <label for="Password" class="form-label">Password: </label>
+            </div>
+                <div class="col-md-6">
+                    <input type="password" class="form-control" name="Password" id="Password" placeholder="******" autocomplete="off" />
+                </div>
+            </div>
+              <div style="text-align:center">
+                <input type="submit" class="btn btn-success" value="Save" />
+            </div>
+            </div>
+</form>

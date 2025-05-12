@@ -1,0 +1,57 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "InsTypeEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.InsTypeId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+
+}
+
+<div class="theheading1">
+    <h4><u>Institute Type Entry:</u></h4>
+</div>
+<form action="/TM/InsTypeEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="InsTypeId" id="InsTypeId" value="@Model.InsTypeId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="InsType" class="form-label">Institute Type: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="InsType" id="InsType" value="@Model.InsType" placeholder="Entry Institute Type" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.InsTypeInfoes)
+            {
+                <tr>
+                    <td>@item.InsType</td>
+
+
+                    <td><a href="/TM/InsTypeEntry?InTId=@item.InsTypeId">Edit</a> ||
+                    <a href="/TM/delInsTypeEntry?InTId=@item.InsTypeId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>

@@ -1,0 +1,56 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "BranchEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.BranchId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+
+}
+
+<div class="theheading1">
+    <h4><u>Branch Information Entry:</u></h4>
+</div>
+<form action="/TM/BranchEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="BranchId" id="BranchId" value="@Model.BranchId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="BranchName" class="form-label">Branch Name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="BranchName" id="BranchName" value="@Model.BranchName" placeholder="Enter Branch Name" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Branch Name</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.BranchInfoes)
+            {
+                <tr>
+                    <td>@item.BranchName</td>
+
+                    <td><a href="/TM/BranchEntry?BId=@item.BranchId">Edit</a> || 
+                    <a href="/TM/delBranchEntry?BId=@item.BranchId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>

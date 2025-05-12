@@ -1,0 +1,309 @@
+﻿@using TeamManagement.Models;
+@{
+    ViewBag.Title = "InstituteEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.InstituteId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+
+}
+
+<div class="theheading1">
+    <h4><u>Institute Information Entry:</u></h4>
+</div>
+<form action="/TM/InstituteEntry" method="post">
+    <div>
+        <input type="hidden" name="InstituteId" id="InstituteId" value="@Model.InstituteId" />
+        <div class="container">
+            <div class="row">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="InsName" class="form-label">Institute Name<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="InsName" id="InsName" value="@Model.InsName" placeholder="Enter Institute Name" autocomplete="off" />
+                    </div>
+                    <div class="col-md-3">
+                        <label for="InsShortName" class="form-label">Institute Short Name<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="InsShortName" id="InsShortName" value="@Model.InsShortName" placeholder="Enter Short Name" autocomplete="off" />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="division_id">Division<span class="required1">*</span>: </label>
+                            <select name="division_id" class="form-control" id="division_id">
+                                <option value="0">Choose Division...</option>
+                                @foreach (var item in db.DivisionInfoes)
+                                {
+                                    if (Model.division_id == item.division_id)
+                                    {
+                                        <option value="@item.division_id" selected>@item.name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.division_id">@item.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="DistrictId">District<span class="required1">*</span>: </label>
+                            <select name="DistrictId" class="form-control" id="DistrictId">
+                                <option value="0">Choose District...</option>
+                                @foreach (var item in db.DistrictInfoes)
+                                {
+                                    if (Model.DistrictId == item.DistrictId)
+                                    {
+                                        <option value="@item.DistrictId" selected>@item.name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.DistrictId">@item.name</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Upazilaid">Upazila Name<span class="required1">*</span> : </label>
+                                <select name="Upazilaid" class="form-control" id="Upazilaid">
+                                    <option value="0">Choose Upazila...</option>
+                                    @foreach (var item in db.UpazilaInfoes)
+                                    {
+                                        if (Model.Upazilaid == item.Upazilaid)
+                                        {
+                                            <option value="@item.Upazilaid" selected>@item.name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Upazilaid">@item.name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="InsTypeId">Institute Type<span class="required1">*</span>: </label>
+                                <select name="InsTypeId" class="form-control" id="InsTypeId">
+                                    <option value="0">Choose Institute Type ...</option>
+                                    @foreach (var item in db.InsTypeInfoes)
+                                    {
+                                        if (Model.InsTypeId == item.InsTypeId)
+                                        {
+                                            <option value="@item.InsTypeId" selected>@item.InsType</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.InsTypeId">@item.InsType</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="GrantedMemberId">Granted Member: </label>
+                            <select class="form-control" name="GrantedMemberId" id="GrantedMemberId">
+                                @foreach (var item in db.TraneeInfoes)
+                                {
+                                if (item.PStatusId == 3)
+                                {
+                                <option value="@item.TraneeId">@item.TraneeName</option>
+                                }
+                                }
+
+                            </select>
+                        </div>
+                        </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="StatusId">Status<span class="required1">*</span>: </label>
+                            <select name="StatusId" class="form-control" id="StatusId">
+                                <option value="0">Choose Status...</option>
+                                @foreach (var item in db.StatusInfoes)
+                                {
+                                   
+                                    if (Model.StatusId == item.StatusId)
+                                    {
+                                        <option value="@item.StatusId" selected>@item.Status</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.StatusId">@item.Status</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center">
+            <input type="submit" id="submit" class="btn btn-success" value="@name" />
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Institute Name</th>
+                <th>Short Name</th>
+                <th>Division</th>
+                <th>District</th>
+                <th>Upazila</th>
+                <th>Institute Type</th>
+                <th>Status</th>
+                <th>Granted Member</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.InstituteInfoes)
+            {
+                <tr>
+                    <td>@item.InsName</td>
+                    <td>@item.InsShortName</td>
+                    
+                    @foreach (var item1 in db.DivisionInfoes)
+                    {
+                        if (item1.division_id == item.division_id)
+                        {
+                            <td>@item1.name</td>
+                        }
+                    }
+
+                    @foreach (var item2 in db.DistrictInfoes)
+                    {
+                        if (item2.DistrictId == item.DistrictId)
+                        {
+                            <td>@item2.name</td>
+                        }
+                    }
+
+                    @foreach (var item3 in db.UpazilaInfoes)
+                    {
+                        if (item3.Upazilaid == item.Upazilaid)
+                        {
+                            <td>@item3.name</td>
+                        }
+                    }
+                    
+                    @foreach (var item4 in db.InsTypeInfoes)
+                    {
+                        if (item4.InsTypeId == item.InsTypeId)
+                        {
+                            <td>@item4.InsType</td>
+                        }
+                    }
+                    @foreach (var item5 in db.TraneeInfoes)
+                    {
+                        if (item5.TraneeId == item.GrantedMemberId)
+                        {
+                            <td>@item5.TraneeName</td>
+                        }
+                    }
+                    @foreach(var item6 in db.StatusInfoes)
+                    {
+                        if(item6.StatusId==item.StatusId)
+                        {
+                            <td>@item6.Status</td>
+                        }
+                    }
+
+                    <td><a href="/TM/InstituteEntry?TnId=@item.InstituteId">Edit</a> ||
+                    <a href="/TM/delInstituteEntry?TnId=@item.InstituteId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+
+
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $('#division_id').change(function () {
+                $('#DistrictId').empty();
+                $.get("/TM/GetDisAPI", { divid: $('#division_id').val() }, function (data) {
+                    // var sl = 1;
+                    $.each(data, function (index, row) {
+                        //alert(row[index][1]);
+                        var row1 = '<option value="' + row.DistrictId + '">' + row.name + '</option>';
+                        $('#DistrictId').append(row1);
+                        // sl++;
+                        //return false;
+                    });
+                });
+            });
+        });
+        $(function () {
+            $('#DistrictId').change(function () {
+                $('#Upazilaid').empty();
+                $.get("/TM/GetUpAPI", { disId: $('#DistrictId').val() }, function (data) {
+                    // var sl = 1;
+                    $.each(data, function (index, row) {
+                        //alert(row[index][1]);
+                        var row2 = '<option value="' + row.Upazilaid + '">' + row.name + '</option>';
+                        $('#Upazilaid').append(row2);
+                        // sl++;
+                        //return false;
+                    });
+                });
+            });
+        });
+
+        $(function () {
+            $('#submit').click(function () {
+                if ($('#InsName').val().trim() == "") {
+                    alert("Please Enter Institute Name!");
+                    return false;
+                }
+                if ($('#InsShortName').val().trim() == "") {
+                    alert("Please Enter Institute Short Name!");
+                    return false;
+                }
+                if ($('#division_id').val() == 0) {
+                    alert("Please select Division!");
+                    return false;
+                }
+                if ($('#DistrictId').val() == 0) {
+                    alert("Please select District!");
+                    return false;
+                }
+                if ($('#Upazilaid').val() == 0) {
+                    alert("Please select Upazila!");
+                    return false;
+                }
+                if ($('#InsTypeId').val() == 0) {
+                    alert("Please select Institute Type!");
+                    return false;
+                }
+                if ($('#GrantedMemberId').val().trim() == "") {
+                    alert("Please select Granted Member!");
+                    return false;
+                }
+                if ($('#StatusId').val() == 0) {
+                    alert("Please select Status!");
+                    return false;
+                }
+                
+            });
+        });
+
+
+    </script>
+
+}

@@ -1,0 +1,177 @@
+﻿@using TeamManagement.Models;
+
+@{
+    ViewBag.Title = "InstituteSearch";
+    Company_InformationEntities db = new Company_InformationEntities();
+
+}
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+
+
+<div class="theheading1">
+    <h4><u>Institute Search:</u></h4>
+</div>
+
+<form action="/TM/InstituteSearch" enctype="multipart/form-data" method="get">
+    <div class="inssearch1">
+        <div class="container">
+            <div class="row">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="InsTypeId">Institute Type<span class="required1">*</span>: </label>
+                            <select class="form-control" name="InsTypeId" id="InsTypeId">
+                                <option value="0" selected>Choose Institute Type...</option>
+                                @foreach (var item in db.InsTypeInfoes)
+                                {
+
+                                    <option value="@item.InsTypeId">@item.InsType</option>
+                                }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="division_id">division<span class="required1">*</span>: </label>
+                            <select class="form-control" name="division_id" id="division_id">
+                                <option value="0" selected>Choose division...</option>
+                                @foreach (var item in db.DivisionInfoes)
+                                {
+                                    <option value="@item.division_id">@item.name</option>
+                                }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="DistrictId">District<span class="required1">*</span>: </label>
+                            <select class="form-control" name="DistrictId" id="DistrictId">
+                                <option value="0" selected>Choose District...</option>
+                                @foreach (var item in db.DistrictInfoes)
+                                {
+                                    <option value="@item.DistrictId">@item.name</option>
+                                }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="Upazilaid">Upazila<span class="required1">*</span> : </label>
+                            <select class="form-control" name="Upazilaid" id="Upazilaid">
+                                <option value="0" selected>Choose Upazila...</option>
+                                @foreach (var item in db.UpazilaInfoes)
+                                {
+
+                                    <option value="@item.Upazilaid">@item.name</option>
+                                }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="StatusId">Status<span class="required1">*</span>: </label>
+                            <select name="StatusId" class="form-control" id="StatusId">
+                                <option value="0">Choose Status...</option>
+                                @foreach (var item in db.StatusInfoes)
+                                {
+                                    <option value="@item.StatusId">@item.Status</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center">
+            <input type="button" id="Search" name="Search" value="Search" class="btn btn-success" />
+            <table class="table table-bordered table-striped" name="Institute" id="InstituteTable"></table>
+        </div>
+    </div>
+</form>
+<br />
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#Search').click(function () {
+            $('#InstituteTable').empty();
+            if ($('#InsTypeId').val() == 0) {
+                alert('Institute Type selection is required');
+                return false();
+            }
+            if ($('#division_id').val() == 0) {
+                alert('Division selection is required');
+                return false();
+            }
+            if ($('#DistrictId').val() == 0) {
+                alert('District selection is required');
+                return false();
+            }
+            if ($('#Upazilaid').val() == 0) {
+                alert('Upazila selection is required');
+                return false();
+            }
+            if ($('#StatusId').val() == 0) {
+                alert('Status selection is required');
+                return false();
+            }
+
+
+            var row2 = '<tr><th>serial</th><th>Institute name</th><th>Institute Shortname</th><th>Status</th><th>Granted Member</th></tr>';
+            $('#InstituteTable').append(row2);
+            $.get("/TM/GetInstituteAPI", { TnId: $('#InsTypeId').val(), divid: $('#division_id').val(), DisId: $('#DistrictId').val(), Upid: $('#Upazilaid').val(), SId: $('#StatusId').val() }, function (data) {
+                var sl = 1;
+                $.each(data, function (index, row) {
+                    //alert(row[index][1]);
+                    var row1 = '<tr>' + '<th scope="row">' + sl + '</th><td>' + row.InsName + '</td>' + '<td>' + row.InsShortName + '</td>' + '<td>' + row.Status + '</td>' + '<td>' + row.GrantedMember + '</td>' + '</tr>';
+                    $('#InstituteTable').append(row1);
+                    sl++;
+                    //return false;
+                });
+            });
+        });
+    });
+    $(function () {
+        $('#division_id').change(function () {
+            $('#DistrictId').empty();
+            $.get("/TM/GetDisAPI", { divid: $('#division_id').val() }, function (data) {
+                // var sl = 1;
+                $.each(data, function (index, row) {
+                    //alert(row[index][1]);
+                    var row1 = '<option value="' + row.DistrictId + '">' + row.name + '</option>';
+                    $('#DistrictId').append(row1);
+                    // sl++;
+                    //return false;
+                });
+            });
+        });
+    });
+
+    $(function () {
+        $('#DistrictId').change(function () {
+            $('#Upazilaid').empty();
+            $.get("/TM/GetUpAPI", { disId: $('#DistrictId').val() }, function (data) {
+                // var sl = 1;
+                $.each(data, function (index, row) {
+                    //alert(row[index][1]);
+                    var row2 = '<option value="' + row.Upazilaid + '">' + row.name + '</option>';
+                    $('#Upazilaid').append(row2);
+                    // sl++;
+                    //return false;
+                });
+            });
+        });
+    });
+    </script>
+}
+
+
+
+
+

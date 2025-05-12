@@ -1,0 +1,56 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "YearEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.YearId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+}
+
+<div class="theheading1">
+    <h4><u>Year Information Entry:</u></h4>
+</div>
+<form action="/TM/YearEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="YearId" id="YearId" value="@Model.YearId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="Year" class="form-label">Year: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="Year" id="Year" value="@Model.Year" placeholder="Entry Year Name" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Year</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.Yearinfoes)
+            {
+                <tr>
+                    <td>@item.Year</td>
+
+
+                    <td><a href="/TM/YearEntry?YId=@item.YearId">Edit</a> ||
+                    <a href="/TM/delYearEntry?YId=@item.YearId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>

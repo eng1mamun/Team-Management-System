@@ -1,0 +1,321 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "FeeEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.FeeEntryId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+}
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+
+<div class="theheading1">
+    <h4><u>Tranee Fee Entry:</u></h4>
+</div>
+<form action="/TM/FeeEntry"enctype="multipart/form-data" method="post">
+    <div>
+        <input type="hidden" name="FeeEntryId" id="FeeEntryId" value="@Model.FeeEntryId" />
+        <div class="container">
+            <div class="row">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="InstituteId">Institute Name<span class="required1">*</span> : </label>
+                            <select class="form-control" name="InstituteId" id="InstituteId">
+                                <option value="0">Choose Institute Name...</option>
+                                @foreach (var item in db.InstituteInfoes)
+                                {
+                                    if (Model.InstituteId == item.InstituteId)
+                                    {
+                                        <option value="@item.InstituteId" selected>@item.InsName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.InstituteId">@item.InsName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="BranchId">Branch Name<span class="required1">*</span> : </label>
+                            <select class="form-control" name="BranchId" id="BranchId">
+                                <option value="0">Choose Branch Name...</option>
+                                @foreach (var item in db.BranchInfoes)
+                                {
+                                    if (Model.BranchId == item.BranchId)
+                                    {
+                                        <option value="@item.BranchId" selected>@item.BranchName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.BranchId">@item.BranchName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="YearId">Year<span class="required1">*</span> : </label>
+                            <select class="form-control" name="YearId" id="YearId">
+                                <option value="0">Choose Year...</option>
+                                @foreach (var item in db.Yearinfoes)
+                                {
+                                    if (Model.YearId == item.YearId)
+                                    {
+                                        <option value="@item.YearId" selected>@item.Year</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.YearId">@item.Year</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="MonthId">Month<span class="required1">*</span> : </label>
+                            <select class="form-control" name="MonthId" id="MonthId">
+                                <option value="0">Choose Month...</option>
+                                @foreach (var item in db.MonthInfoes)
+                                {
+                                    if (Model.MonthId == item.MonthId)
+                                    {
+                                        <option value="@item.MonthId" selected>@item.MonthName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.MonthId">@item.MonthName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="ClassId">Class Name<span class="required1">*</span> : </label>
+                            <select class="form-control" name="ClassId" id="ClassId">
+                                <option value="0">Choose Class Name...</option>
+                                @foreach (var item in db.ClassInfoes)
+                                {
+                                    if (Model.ClassId == item.ClassId)
+                                    {
+                                        <option value="@item.ClassId" selected>@item.ClassName</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.ClassId">@item.ClassName</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="TotalStudent" class="form-label">Total Student<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="TotalStudent" id="TotalStudent" value="@Model.TotalStudent" placeholder="Enter Total Student" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="PayDate" class="form-label">Payment Date<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="PayDate" id="PayDate" value="@Model.PayDate" placeholder="Enter Payment Date" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="FeeperStudent" class="form-label">Fee Per Student<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="FeeperStudent" id="FeeperStudent" value="@Model.FeeperStudent" placeholder="Fee Per Student" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="TotalCost" class="form-label">Total Cost<span class="required1">*</span>: </label>
+                        <input type="text" class="form-control" name="TotalCost" id="TotalCost" value="@Model.TotalCost" placeholder="Enter Total Cost" autocomplete="off">
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="GrantedMemberId">Granted Member<span class="required1">*</span> : </label>
+                            <select class="form-control" name="GrantedMemberId" id="GrantedMemberId">
+                                <option value="0">Choose Granted Member...</option>
+                                @foreach (var item in db.TraneeInfoes)
+                                {
+                                    if (item.PStatusId == 3)
+                                    {
+                                        if (Model.GrantedMemberId == item.TraneeId)
+                                        {
+                                        <option value="@item.TraneeId" selected>@item.TraneeName</option>
+                                        }
+                                        else
+                                        {
+                                        <option value="@item.TraneeId">@item.TraneeName</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+        <br />
+        <div style="text-align:center">
+            <input type="submit" id="submit" class="btn btn-success" value="@name" />
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Institute Name</th>
+                <th>Branch Name</th>
+                <th>Year</th>
+                <th>Month</th>
+                <th>Class Name</th>
+                <th>Total Student</th>
+                <th>Payment Date</th>
+                <th>Fee Per Student</th>
+                <th>Total Cost</th>
+                <th>Granted Member</th>
+                <th>Edit || Delete</th>
+            </tr>
+
+            @foreach (var item in db.FeeEntryInfoes)
+            {
+                <tr>
+                    
+                    @foreach (var item1 in db.InstituteInfoes)
+                    {
+                        if (item1.InstituteId == item.InstituteId)
+                        {
+                            <td>@item1.InsName</td>
+                        }
+                    }
+
+                    @foreach (var item2 in db.BranchInfoes)
+                    {
+                        if (item2.BranchId == item.BranchId)
+                        {
+                            <td>@item2.BranchName</td>
+                        }
+                    }
+
+                    @foreach (var item3 in db.Yearinfoes)
+                    {
+                        if (item3.YearId == item.YearId)
+                        {
+                            <td>@item3.Year</td>
+                        }
+                    }
+
+                    @foreach (var item4 in db.MonthInfoes)
+                    {
+                        if (item4.MonthId == item.MonthId)
+                        {
+                            <td>@item4.MonthName</td>
+                        }
+                    }
+
+                    @foreach (var item5 in db.ClassInfoes)
+                    {
+                        if (item5.ClassId == item.ClassId)
+                        {
+                            <td>@item5.ClassName</td>
+                        }
+                    }
+
+                    <td>@item.TotalStudent</td>
+                    <td>@item.PayDate</td>
+                    <td>@item.FeeperStudent</td>
+                    <td>@item.TotalCost</td>
+                    @foreach (var item5 in db.TraneeInfoes)
+                    {
+                        if (item5.TraneeId == item.GrantedMemberId)
+                        {
+                            <td>@item5.TraneeName</td>
+                        }
+                    }
+
+                    <td>
+                        <a href="/TM/FeeEntry?FId=@item.FeeEntryId">Edit</a> ||
+                        <a href="/TM/delFeeEntry?FId=@item.FeeEntryId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
+
+
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#PayDate').datepicker({
+                changerYear: true,
+                changerMonth: true,
+                dateFormat: 'dd/mm/yy',
+                altField: $(this).val(),
+                yearRange:'-150:+0'
+                });
+        });
+
+        $(function () {
+            $('#submit').click(function () {
+
+                if ($('#InstituteId').val() == 0) {
+                    //If the "Please Select" option is selected display error.
+                    alert("Please select Institute Name!");
+                    return false;
+                }
+                if ($('#BranchId').val() == 0) {
+                    alert("Please select Branch Name!");
+                    return false;
+                }
+                if ($('#YearId').val() == 0) {
+                    alert("Please select Year!");
+                    return false;
+                }
+                if ($('#MonthId').val() == 0) {
+                    alert("Please select Month!");
+                    return false;
+                }
+                if ($('#ClassId').val() == 0) {
+                    alert("Please select Class Name!");
+                    return false;
+                }
+                if ($('#TotalStudent').val().trim() == "") {
+                    alert("Please Enter Total Student!");
+                    return false;
+                }
+                if ($('#PayDate').val() == 0) {
+                    alert("Please select Payment Date!");
+                    return false;
+                }
+                if ($('#FeeperStudent').val().trim() == "") {
+                    alert("Please Enter Fee Per Student!");
+                    return false;
+                }
+                if ($('#TotalCost').val().trim() == "") {
+                    alert("Please check payment!");
+                    return false;
+                }
+                if ($('#GrantedMemberId').val() == 0) {
+                    //If the "Please Select" option is selected display error.
+                    alert("Please select Granted Member!");
+                    return false;
+                }
+            });
+        });
+
+    </script>
+
+}

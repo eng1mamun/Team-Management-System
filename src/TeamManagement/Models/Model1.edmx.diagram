@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="281731c6572a45cfa967698f35945860" Name="Diagram1">
+        <EntityTypeShape EntityType="Company_InformationModel.ApprovedInfo" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.BranchInfo" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.ClassInfo" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.DistrictInfo" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.DivisionInfo" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.EStatusInfo" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.FeeEntryInfo" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.GenderInfo" Width="1.5" PointX="4.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.InstituteInfo" Width="1.5" PointX="6.75" PointY="5.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.InsTypeInfo" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.MonthInfo" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.PaymentmethodInfo" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.PaymentStatusInfo" Width="1.5" PointX="8.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.PStatusInfo" Width="1.5" PointX="2.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.StatusInfo" Width="1.5" PointX="4.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.TraneeInfo" Width="1.5" PointX="6.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.TTypeInfo" Width="1.5" PointX="8.75" PointY="9.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.UpazilaInfo" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Company_InformationModel.Yearinfo" Width="1.5" PointX="10.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

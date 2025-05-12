@@ -1,0 +1,196 @@
+﻿@using TeamManagement.Models;
+
+@{
+    ViewBag.Title = "MemberSearch";
+    Company_InformationEntities db = new Company_InformationEntities();
+
+}
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+
+
+<div class="theheading1">
+    <h4><u>Member Search:</u></h4>
+</div>
+<form action="/TM/MemberSearch" enctype="multipart/form-data" method="get" style="overflow-x:auto">
+    <div class="container">
+        <div class="row">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="TraneeTypeId">Tranee Type<span class="required1">*</span>: </label>
+                        <select class="form-control" name="TraneeTypeId" id="TraneeTypeId">
+                            <option value="0">Choose Tranee Type...</option>
+                            @foreach (var item in db.TTypeInfoes)
+                            {
+
+                                <option value="@item.TraneeTypeId">@item.TraneeTypeName</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="division_id">Division<span class="required1">*</span>: </label>
+                        <select class="form-control" name="division_id" id="division_id">
+                            <option value="0">Choose division...</option>
+                            @foreach (var item in db.DivisionInfoes)
+                            {
+                                <option value="@item.division_id">@item.name</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="DistrictId">District<span class="required1">*</span>: </label>
+                        <select class="form-control" name="DistrictId" id="DistrictId">
+                            <option value="0">Choose District...</option>
+                            @foreach (var item in db.DistrictInfoes)
+                            {
+                                <option value="@item.DistrictId">@item.name</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="Upazilaid">Upazila Name<span class="required1">*</span> : </label>
+                        <select class="form-control" name="Upazilaid" id="Upazilaid">
+                            <option value="0">Choose Upazila...</option>
+                            @foreach (var item in db.UpazilaInfoes)
+                            {
+
+                                <option value="@item.Upazilaid">@item.name</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="EStatusId">Employee Status<span class="required1">*</span> : </label>
+                        <select class="form-control" name="EStatusId" id="EStatusId">
+                            <option value="0">Choose Employee Status...</option>
+                            @foreach (var item in db.EStatusInfoes)
+                            {
+
+                                <option value="@item.EStatusId">@item.EStatusName</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="PStatusId">Performance Status<span class="required1">*</span> : </label>
+                        <select class="form-control" name="PStatusId" id="PStatusId">
+                            <option value="0">Choose Performance Status...</option>
+                            @foreach (var item in db.PStatusInfoes)
+                            {
+
+                                <option value="@item.PStatusId">@item.PStatusName</option>
+                            }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center">
+        <input type="button" id="Search" name="Search" value="Search" class="btn btn-success" />
+        <table class="table table-bordered table-striped" name="Member" id="MemberTable"></table>
+    </div>
+</form>
+<br />
+
+@section Scripts{
+    @*<script src="~/Scripts/jquery-1.12.4.js"></script>*@
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#Search').click(function () {
+            $('#MemberTable').empty();
+            if ($('#TraneeTypeId').val() == 0) {
+                alert('TraneeType selection is required');
+                return false();
+            }
+            if ($('#division_id').val() == 0) {
+                alert('division selection is required');
+                return false();
+            }
+            if ($('#DistrictId').val() == 0) {
+                alert('District selection is required');
+                return false();
+            }
+            if ($('#Upazilaid').val() == 0) {
+                alert('Upazila selection is required');
+                return false();
+            }
+            if ($('#PStatusId').val() == 0) {
+                alert('PStatus selection is required');
+                return false();
+            }
+            if ($('#EStatusId').val() == 0) {
+                alert('EStatus selection is required');
+                return false();
+            }
+            var row2 = '<tr><th>serial</th><th>TraneeName</th><th>Phone</th><th>Email</th><th>JoiningDate</th><th>Image</th><th>DOB</th><th>Gender</th><th>Percentage</th></tr>';
+            $('#MemberTable').append(row2);
+            $.get("/TM/GetMemberAPI", { TyId: $('#TraneeTypeId').val(), divid: $('#division_id').val(), DisId: $('#DistrictId').val(), Upid: $('#Upazilaid').val(), EId: $('#EStatusId').val(), PId: $('#PStatusId').val() }, function (data) {
+                var sl = 1;
+                $.each(data, function (index, row) {
+                    //alert(row[index][1]);TraneeTypeName
+                    var row1 = '<tr>' + '<th scope="row">' + sl + '</th><td>' + row.TraneeName + '</td>' + '<td>' + row.Phone + '</td>' + '<td>' + row.Email + '</td>' + '<td>' + row.JoiningDate + '</td>' + '<td>' + row.Image + '</td>' + '<td>' + row.DOB + '</td>' + '<td>' + row.Gender + '</td>' + '<td>' + row.percentage + '</td>' + '</tr>';
+                    $('#MemberTable').append(row1);
+                    sl++;
+                    //return false;
+                });
+            });
+
+
+        });
+    });
+
+     $(function () {
+            $('#division_id').change(function () {
+                $('#DistrictId').empty();
+                $.get("/TM/GetDisAPI", { divid: $('#division_id').val() }, function (data) {
+                    // var sl = 1;
+                    $.each(data, function (index, row) {
+                        //alert(row[index][1]);
+                        var row1 = '<option value="' + row.DistrictId + '">' + row.name + '</option>';
+                        $('#DistrictId').append(row1);
+                        // sl++;
+                        //return false;
+                    });
+                });
+            });
+        });
+
+        $(function () {
+            $('#DistrictId').change(function () {
+                $('#Upazilaid').empty();
+                $.get("/TM/GetUpAPI", { disId: $('#DistrictId').val() }, function (data) {
+                    // var sl = 1;
+                    $.each(data, function (index, row) {
+                        //alert(row[index][1]);
+                        var row2 = '<option value="' + row.Upazilaid + '">' + row.name + '</option>';
+                        $('#Upazilaid').append(row2);
+                        // sl++;
+                        //return false;
+                    });
+                });
+            });
+        });
+    </script>
+}
+
+
+
+
+

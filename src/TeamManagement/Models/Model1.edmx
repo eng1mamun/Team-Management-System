@@ -1,0 +1,642 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Company_InformationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ApprovedInfo">
+          <Key>
+            <PropertyRef Name="ApprovedId" />
+          </Key>
+          <Property Name="ApprovedId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ClassInfo">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClassName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DistrictInfo">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+          </Key>
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="division_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="bn_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="lat" Type="varchar" MaxLength="15" />
+          <Property Name="lon" Type="varchar" MaxLength="15" />
+          <Property Name="url" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DivisionInfo">
+          <Key>
+            <PropertyRef Name="division_id" />
+          </Key>
+          <Property Name="division_id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="bn_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EStatusInfo">
+          <Key>
+            <PropertyRef Name="EStatusId" />
+          </Key>
+          <Property Name="EStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EStatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="FeeEntryInfo">
+          <Key>
+            <PropertyRef Name="FeeEntryId" />
+          </Key>
+          <Property Name="FeeEntryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstituteId" Type="int" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="MonthId" Type="int" />
+          <Property Name="YearId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="TotalStudent" Type="int" />
+          <Property Name="FeeperStudent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalCost" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PaymentMethodId" Type="int" />
+          <Property Name="PaymentStatusId" Type="int" />
+          <Property Name="TranjectionId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApprovedId" Type="int" />
+          <Property Name="GrantedMemberId" Type="int" />
+          <Property Name="PayDate" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GenderInfo">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InstituteInfo">
+          <Key>
+            <PropertyRef Name="InstituteId" />
+          </Key>
+          <Property Name="InstituteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsName" Type="nvarchar" MaxLength="250" />
+          <Property Name="InsShortName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Upazilaid" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="division_id" Type="int" />
+          <Property Name="InsTypeId" Type="int" />
+          <Property Name="StatusId" Type="int" />
+          <Property Name="GrantedMemberId" Type="int" />
+        </EntityType>
+        <EntityType Name="InsTypeInfo">
+          <Key>
+            <PropertyRef Name="InsTypeId" />
+          </Key>
+          <Property Name="InsTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InsType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="MonthInfo">
+          <Key>
+            <PropertyRef Name="MonthId" />
+          </Key>
+          <Property Name="MonthId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MonthName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PaymentmethodInfo">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayMethodName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PaymentStatusInfo">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PSName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PStatusInfo">
+          <Key>
+            <PropertyRef Name="PStatusId" />
+          </Key>
+          <Property Name="PStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PStatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatusInfo">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TraneeInfo">
+          <Key>
+            <PropertyRef Name="TraneeId" />
+          </Key>
+          <Property Name="TraneeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TraneeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="14" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="Upazilaid" Type="int" />
+          <Property Name="division_id" Type="int" />
+          <Property Name="TraneeTypeId" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="JoiningDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="NID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="nvarchar" MaxLength="50" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="EStatusId" Type="int" />
+          <Property Name="PStatusId" Type="int" />
+          <Property Name="percentage" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="10" />
+          <Property Name="UName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TTypeInfo">
+          <Key>
+            <PropertyRef Name="TraneeTypeId" />
+          </Key>
+          <Property Name="TraneeTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TraneeTypeName" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UpazilaInfo">
+          <Key>
+            <PropertyRef Name="Upazilaid" />
+          </Key>
+          <Property Name="Upazilaid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DistrictId" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="bn_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="url" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yearinfo">
+          <Key>
+            <PropertyRef Name="YearId" />
+          </Key>
+          <Property Name="YearId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="Company_InformationModelStoreContainer">
+          <EntitySet Name="ApprovedInfo" EntityType="Self.ApprovedInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchInfo" EntityType="Self.BranchInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassInfo" EntityType="Self.ClassInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DistrictInfo" EntityType="Self.DistrictInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DivisionInfo" EntityType="Self.DivisionInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EStatusInfo" EntityType="Self.EStatusInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeeEntryInfo" EntityType="Self.FeeEntryInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenderInfo" EntityType="Self.GenderInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InstituteInfo" EntityType="Self.InstituteInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsTypeInfo" EntityType="Self.InsTypeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MonthInfo" EntityType="Self.MonthInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentmethodInfo" EntityType="Self.PaymentmethodInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentStatusInfo" EntityType="Self.PaymentStatusInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PStatusInfo" EntityType="Self.PStatusInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusInfo" EntityType="Self.StatusInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TraneeInfo" EntityType="Self.TraneeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TTypeInfo" EntityType="Self.TTypeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UpazilaInfo" EntityType="Self.UpazilaInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yearinfo" EntityType="Self.Yearinfo" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Company_InformationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Company_InformationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ApprovedInfoes" EntityType="Company_InformationModel.ApprovedInfo" />
+          <EntitySet Name="BranchInfoes" EntityType="Company_InformationModel.BranchInfo" />
+          <EntitySet Name="ClassInfoes" EntityType="Company_InformationModel.ClassInfo" />
+          <EntitySet Name="DistrictInfoes" EntityType="Company_InformationModel.DistrictInfo" />
+          <EntitySet Name="DivisionInfoes" EntityType="Company_InformationModel.DivisionInfo" />
+          <EntitySet Name="EStatusInfoes" EntityType="Company_InformationModel.EStatusInfo" />
+          <EntitySet Name="FeeEntryInfoes" EntityType="Company_InformationModel.FeeEntryInfo" />
+          <EntitySet Name="GenderInfoes" EntityType="Company_InformationModel.GenderInfo" />
+          <EntitySet Name="InstituteInfoes" EntityType="Company_InformationModel.InstituteInfo" />
+          <EntitySet Name="InsTypeInfoes" EntityType="Company_InformationModel.InsTypeInfo" />
+          <EntitySet Name="MonthInfoes" EntityType="Company_InformationModel.MonthInfo" />
+          <EntitySet Name="PaymentmethodInfoes" EntityType="Company_InformationModel.PaymentmethodInfo" />
+          <EntitySet Name="PaymentStatusInfoes" EntityType="Company_InformationModel.PaymentStatusInfo" />
+          <EntitySet Name="PStatusInfoes" EntityType="Company_InformationModel.PStatusInfo" />
+          <EntitySet Name="StatusInfoes" EntityType="Company_InformationModel.StatusInfo" />
+          <EntitySet Name="TraneeInfoes" EntityType="Company_InformationModel.TraneeInfo" />
+          <EntitySet Name="TTypeInfoes" EntityType="Company_InformationModel.TTypeInfo" />
+          <EntitySet Name="UpazilaInfoes" EntityType="Company_InformationModel.UpazilaInfo" />
+          <EntitySet Name="Yearinfoes" EntityType="Company_InformationModel.Yearinfo" />
+        </EntityContainer>
+        <EntityType Name="ApprovedInfo">
+          <Key>
+            <PropertyRef Name="ApprovedId" />
+          </Key>
+          <Property Name="ApprovedId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ClassInfo">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DistrictInfo">
+          <Key>
+            <PropertyRef Name="DistrictId" />
+          </Key>
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="division_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="bn_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lat" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="lon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="DivisionInfo">
+          <Key>
+            <PropertyRef Name="division_id" />
+          </Key>
+          <Property Name="division_id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="bn_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EStatusInfo">
+          <Key>
+            <PropertyRef Name="EStatusId" />
+          </Key>
+          <Property Name="EStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FeeEntryInfo">
+          <Key>
+            <PropertyRef Name="FeeEntryId" />
+          </Key>
+          <Property Name="FeeEntryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstituteId" Type="Int32" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="MonthId" Type="Int32" />
+          <Property Name="YearId" Type="Int32" />
+          <Property Name="ClassId" Type="Int32" />
+          <Property Name="TotalStudent" Type="Int32" />
+          <Property Name="FeeperStudent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalCost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PaymentMethodId" Type="Int32" />
+          <Property Name="PaymentStatusId" Type="Int32" />
+          <Property Name="TranjectionId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedId" Type="Int32" />
+          <Property Name="GrantedMemberId" Type="Int32" />
+          <Property Name="PayDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GenderInfo">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InstituteInfo">
+          <Key>
+            <PropertyRef Name="InstituteId" />
+          </Key>
+          <Property Name="InstituteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="InsShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Upazilaid" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="division_id" Type="Int32" />
+          <Property Name="InsTypeId" Type="Int32" />
+          <Property Name="StatusId" Type="Int32" />
+          <Property Name="GrantedMemberId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InsTypeInfo">
+          <Key>
+            <PropertyRef Name="InsTypeId" />
+          </Key>
+          <Property Name="InsTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InsType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MonthInfo">
+          <Key>
+            <PropertyRef Name="MonthId" />
+          </Key>
+          <Property Name="MonthId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MonthName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaymentmethodInfo">
+          <Key>
+            <PropertyRef Name="PaymentMethodId" />
+          </Key>
+          <Property Name="PaymentMethodId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayMethodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PaymentStatusInfo">
+          <Key>
+            <PropertyRef Name="PaymentStatusId" />
+          </Key>
+          <Property Name="PaymentStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PSName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PStatusInfo">
+          <Key>
+            <PropertyRef Name="PStatusId" />
+          </Key>
+          <Property Name="PStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StatusInfo">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TraneeInfo">
+          <Key>
+            <PropertyRef Name="TraneeId" />
+          </Key>
+          <Property Name="TraneeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TraneeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="Upazilaid" Type="Int32" />
+          <Property Name="division_id" Type="Int32" />
+          <Property Name="TraneeTypeId" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JoiningDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="EStatusId" Type="Int32" />
+          <Property Name="PStatusId" Type="Int32" />
+          <Property Name="percentage" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="BloodGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="TTypeInfo">
+          <Key>
+            <PropertyRef Name="TraneeTypeId" />
+          </Key>
+          <Property Name="TraneeTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TraneeTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UpazilaInfo">
+          <Key>
+            <PropertyRef Name="Upazilaid" />
+          </Key>
+          <Property Name="Upazilaid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="bn_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Yearinfo">
+          <Key>
+            <PropertyRef Name="YearId" />
+          </Key>
+          <Property Name="YearId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Company_InformationModelStoreContainer" CdmEntityContainer="Company_InformationEntities">
+          <EntitySetMapping Name="ApprovedInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.ApprovedInfo">
+              <MappingFragment StoreEntitySet="ApprovedInfo">
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="ApprovedId" ColumnName="ApprovedId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BranchInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.BranchInfo">
+              <MappingFragment StoreEntitySet="BranchInfo">
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.ClassInfo">
+              <MappingFragment StoreEntitySet="ClassInfo">
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DistrictInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.DistrictInfo">
+              <MappingFragment StoreEntitySet="DistrictInfo">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="lon" ColumnName="lon" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="bn_name" ColumnName="bn_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="division_id" ColumnName="division_id" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DivisionInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.DivisionInfo">
+              <MappingFragment StoreEntitySet="DivisionInfo">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="bn_name" ColumnName="bn_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="division_id" ColumnName="division_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EStatusInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.EStatusInfo">
+              <MappingFragment StoreEntitySet="EStatusInfo">
+                <ScalarProperty Name="EStatusName" ColumnName="EStatusName" />
+                <ScalarProperty Name="EStatusId" ColumnName="EStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeeEntryInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.FeeEntryInfo">
+              <MappingFragment StoreEntitySet="FeeEntryInfo">
+                <ScalarProperty Name="PayDate" ColumnName="PayDate" />
+                <ScalarProperty Name="GrantedMemberId" ColumnName="GrantedMemberId" />
+                <ScalarProperty Name="ApprovedId" ColumnName="ApprovedId" />
+                <ScalarProperty Name="TranjectionId" ColumnName="TranjectionId" />
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="FeeperStudent" ColumnName="FeeperStudent" />
+                <ScalarProperty Name="TotalStudent" ColumnName="TotalStudent" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+                <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+                <ScalarProperty Name="FeeEntryId" ColumnName="FeeEntryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenderInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.GenderInfo">
+              <MappingFragment StoreEntitySet="GenderInfo">
+                <ScalarProperty Name="GenName" ColumnName="GenName" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstituteInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.InstituteInfo">
+              <MappingFragment StoreEntitySet="InstituteInfo">
+                <ScalarProperty Name="GrantedMemberId" ColumnName="GrantedMemberId" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="InsTypeId" ColumnName="InsTypeId" />
+                <ScalarProperty Name="division_id" ColumnName="division_id" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Upazilaid" ColumnName="Upazilaid" />
+                <ScalarProperty Name="InsShortName" ColumnName="InsShortName" />
+                <ScalarProperty Name="InsName" ColumnName="InsName" />
+                <ScalarProperty Name="InstituteId" ColumnName="InstituteId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsTypeInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.InsTypeInfo">
+              <MappingFragment StoreEntitySet="InsTypeInfo">
+                <ScalarProperty Name="InsType" ColumnName="InsType" />
+                <ScalarProperty Name="InsTypeId" ColumnName="InsTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MonthInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.MonthInfo">
+              <MappingFragment StoreEntitySet="MonthInfo">
+                <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+                <ScalarProperty Name="MonthId" ColumnName="MonthId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentmethodInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.PaymentmethodInfo">
+              <MappingFragment StoreEntitySet="PaymentmethodInfo">
+                <ScalarProperty Name="PayMethodName" ColumnName="PayMethodName" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentStatusInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.PaymentStatusInfo">
+              <MappingFragment StoreEntitySet="PaymentStatusInfo">
+                <ScalarProperty Name="PSName" ColumnName="PSName" />
+                <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PStatusInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.PStatusInfo">
+              <MappingFragment StoreEntitySet="PStatusInfo">
+                <ScalarProperty Name="PStatusName" ColumnName="PStatusName" />
+                <ScalarProperty Name="PStatusId" ColumnName="PStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.StatusInfo">
+              <MappingFragment StoreEntitySet="StatusInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TraneeInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.TraneeInfo">
+              <MappingFragment StoreEntitySet="TraneeInfo">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="percentage" ColumnName="percentage" />
+                <ScalarProperty Name="PStatusId" ColumnName="PStatusId" />
+                <ScalarProperty Name="EStatusId" ColumnName="EStatusId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="JoiningDate" ColumnName="JoiningDate" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TraneeTypeId" ColumnName="TraneeTypeId" />
+                <ScalarProperty Name="division_id" ColumnName="division_id" />
+                <ScalarProperty Name="Upazilaid" ColumnName="Upazilaid" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="TraneeName" ColumnName="TraneeName" />
+                <ScalarProperty Name="TraneeId" ColumnName="TraneeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TTypeInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.TTypeInfo">
+              <MappingFragment StoreEntitySet="TTypeInfo">
+                <ScalarProperty Name="TraneeTypeName" ColumnName="TraneeTypeName" />
+                <ScalarProperty Name="TraneeTypeId" ColumnName="TraneeTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UpazilaInfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.UpazilaInfo">
+              <MappingFragment StoreEntitySet="UpazilaInfo">
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="bn_name" ColumnName="bn_name" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="Upazilaid" ColumnName="Upazilaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yearinfoes">
+            <EntityTypeMapping TypeName="Company_InformationModel.Yearinfo">
+              <MappingFragment StoreEntitySet="Yearinfo">
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="YearId" ColumnName="YearId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

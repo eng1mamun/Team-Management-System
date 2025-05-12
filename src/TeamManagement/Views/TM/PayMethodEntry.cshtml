@@ -1,0 +1,57 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "PayMethodEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.PaymentMethodId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+}
+
+
+<div class="theheading1">
+    <h4><u>Payment Method Entry:</u></h4>
+</div>
+<form action="/TM/PayMethodEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="PaymentMethodId" id="PaymentMethodId" value="@Model.PaymentMethodId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="PayMethodName" class="form-label">Payment Method Type: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="PayMethodName" id="PayMethodName"value="@Model.PayMethodName" placeholder="Enter Payment Method" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Payment Method Type</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.PaymentmethodInfoes)
+            {
+                <tr>
+                    <td>@item.PayMethodName</td>
+
+
+                    <td><a href="/TM/PayMethodEntry?PaId=@item.PaymentMethodId">Edit</a> || 
+                    <a href="/TM/delPayMethodEntry?PaId=@item.PaymentMethodId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>

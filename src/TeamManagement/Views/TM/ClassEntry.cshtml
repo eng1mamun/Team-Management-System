@@ -1,0 +1,55 @@
+﻿@using TeamManagement.Models
+@{
+    ViewBag.Title = "ClassEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.ClassId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+}
+
+<div class="theheading1">
+    <h4><u>Class Information Entry:</u></h4>
+</div>
+<form action="/TM/ClassEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="ClassId" id="ClassId" value="@Model.ClassId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="ClassName" class="form-label">Class Name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="ClassName" id="ClassName" value="@Model.ClassName" placeholder="Entry Class Name" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+        <div class="form-group">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Edit || Delete</th>
+                </tr>
+                @foreach (var item in db.ClassInfoes)
+                {
+                    <tr>
+                        <td>@item.ClassName</td>
+                       
+                        <td><a href="/TM/ClassEntry?CId=@item.ClassId">Edit</a> || 
+                        <a href="/TM/delClassEntry?CId=@item.ClassId">Delete</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+</form>

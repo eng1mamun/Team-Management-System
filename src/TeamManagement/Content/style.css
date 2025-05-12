@@ -1,0 +1,102 @@
+﻿body {
+    margin:0;
+    background-color:#F3F3F3;
+}
+
+.insidebody{
+    background-color:bisque;
+}
+
+.heading1{
+    margin-top:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    text-align:center;
+    background-color:#293955;
+    color:#ffffff;
+}
+
+footer{
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 70px;
+    text-align:center;
+    background-color:#293955;
+    color:#ffffff;
+}
+
+footer a {
+    color:darkorange;
+}
+/*donot work upside............................................
+    ===========================================================
+*/
+
+
+.theheading1{
+    text-align:center;
+    padding-top:20px;
+    padding-bottom:10px;
+}
+
+.required1{
+    color:red;
+}
+
+.brentry{
+    margin-left:15%;
+    margin-bottom:30px;
+}
+
+
+
+.brname{
+    font-size:22px;
+}
+
+.inssearch1{
+    padding-left:30px;
+}
+
+
+
+
+
+
+
+
+/*
+.form1 {
+    margin-left: 8%;
+    margin-right: 8%;
+}
+
+
+.tsm{
+    margin-bottom: 30px;
+}
+
+.fentry{
+    margin-left:10%;
+    margin-right:10%;
+}
+.bsubmitbtn{
+    margin-top: 32px;
+    margin-bottom:70px;
+    
+}
+.bupdatebtn{
+    margin-top: 32px;
+    margin-bottom:70px;
+}
+.bdeletebtn{
+    margin-top: 32px;
+    margin-bottom:70px;
+}
+
+.brbodypage{
+    margin-left: 8%;
+    margin-right: 8%;
+    background-color:bisque;
+}
+*/

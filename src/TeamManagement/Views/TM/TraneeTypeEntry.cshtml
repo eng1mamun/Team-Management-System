@@ -1,0 +1,58 @@
+﻿@using TeamManagement.Models;
+
+@{
+    ViewBag.Title = "TraneeTypeEntry";
+    Company_InformationEntities db = new Company_InformationEntities();
+    string name = "";
+    if (Model.TraneeTypeId > 0)
+    {
+        name = "Update";
+    }
+    else
+    {
+        name = "Save";
+    }
+}
+
+<h2></h2>
+<div class="theheading1">
+    <h4><u>Tranee Type Entry:</u></h4>
+</div>
+<form action="/TM/TraneeTypeEntry" method="post" class="brentry">
+    <div>
+        <input type="hidden" name="TraneeTypeId" id="TraneeTypeId" value="@Model.TraneeTypeId" />
+        <div class="row g-3">
+            <div class="col-auto brname">
+                <label for="TraneeTypeName" class="form-label">Tranee Type Name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="TraneeTypeName" id="TraneeTypeName"value="@Model.TraneeTypeName" placeholder="Enter Tranee Type Name" autocomplete="off" />
+            </div>
+            <div class="col-auto">
+                <input type="submit" class="btn btn-success" value="@name" />
+            </div>
+        </div>
+    </div>
+</form>
+<br />
+
+<form>
+    <div class="form-group">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Edit || Delete</th>
+            </tr>
+            @foreach (var item in db.TTypeInfoes)
+            {
+                <tr>
+                    <td>@item.TraneeTypeName</td>
+
+
+                    <td><a href="/TM/TraneeTypeEntry?TyId=@item.TraneeTypeId">Edit</a> ||
+                    <a href="/TM/delTraneeTypeEntry?TyId=@item.TraneeTypeId">Delete</a></td>
+                </tr>
+            }
+        </table>
+    </div>
+</form>
